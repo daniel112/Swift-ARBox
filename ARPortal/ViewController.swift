@@ -51,7 +51,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     // MARK: - Private API
     func setup() {
         let node = SCNNode()
-        node.position = SCNVector3.init(0, 0, 0)
+        node.position = SCNVector3.init(0, 0, -15)
         
         let leftWall = createBox(isDoor: false)
         leftWall.position = SCNVector3.init((-length / 2) + width, 0, 0)

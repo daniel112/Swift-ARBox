@@ -10,7 +10,7 @@ import Foundation
 import SceneKit
 import ARKit
 
-var width : CGFloat = 0.02
+var width : CGFloat = 0.1
 var height : CGFloat = 10
 var length : CGFloat = 10
 var doorLength : CGFloat = 0.3
@@ -22,15 +22,15 @@ func createBox(isDoor : Bool) -> SCNNode {
     let firstBox = SCNBox(width: width, height: height, length: isDoor ? doorLength : length, chamferRadius: 0)
     let firstBoxNode = SCNNode(geometry: firstBox)
     firstBoxNode.renderingOrder = 200
+        let material = SCNMaterial()
+        material.diffuse.contents = UIImage.init(named: "bg")//UIColor.green
+        firstBox.materials = [material]
     node.addChildNode(firstBoxNode)
     
-    let material = SCNMaterial()
-    material.diffuse.contents = UIImage.init(named: "bg")//UIColor.green
-    firstBox.materials = [material]
     
     // add masked box - inner box
     let maskedBox = SCNBox(width: width, height: height, length: isDoor ? doorLength : length, chamferRadius: 0)
-    //maskedBox.firstMaterial?.diffuse.contents = UIColor.yellow
+    maskedBox.firstMaterial?.diffuse.contents = UIColor.yellow
     maskedBox.firstMaterial?.transparency = 0.00001
     
     let maskedBoxNode = SCNNode(geometry: maskedBox)
